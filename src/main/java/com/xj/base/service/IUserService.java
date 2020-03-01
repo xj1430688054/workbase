@@ -1,5 +1,7 @@
 package com.xj.base.service;
 
+import java.util.List;
+
 import com.xj.base.entity.User;
 import com.xj.base.service.support.IBaseService;
 
@@ -36,6 +38,13 @@ public interface IUserService extends IBaseService<User, Integer> {
 	String findRoleNameById(Integer id);
 
 	String findNameById(String pid);
+
+	/**查找现在无没有分配的员工 */
+	List<User> findNOUser();
+
+	/** 查找现在已经分配的员工 
+	 * @param id */
+	List<User> findYesUser(Integer id);
 
 
 }

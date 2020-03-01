@@ -2,6 +2,7 @@ package com.xj.base.service.impl;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +106,20 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements I
 	public String findNameById(String pid) {
 		return userDao.findNameByid(pid);
 		
+	}
+
+	@Override
+	public List<User> findNOUser() {
+		// TODO Auto-generated method stub
+		return userDao.findNOUser();
+	}
+
+
+
+	@Override
+	public List<User> findYesUser(Integer id) {
+		// TODO Auto-generated method stub
+		return userDao.findYesUser(id);
 	}
 	
 }

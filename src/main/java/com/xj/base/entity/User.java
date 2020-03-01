@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.xj.base.entity.support.BaseEntity;
 
 /**
@@ -118,6 +119,12 @@ public class User extends BaseEntity {
 	@ManyToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tb_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
 	private java.util.Set<Role> roles;
+	
+	@JsonIgnoreProperties(value = {"users"})
+	@JSONField(serialize = false)
+	@ManyToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@JoinTable(name = "tb_Group_role", joinColumns = { @JoinColumn(name = "uid") }, inverseJoinColumns = { @JoinColumn(name = "gid") })
+	private java.util.Set<Group> groups;
 
 	public Integer getId() {
 		return id;

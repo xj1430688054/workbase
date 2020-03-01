@@ -45,8 +45,9 @@ public class LoginController extends BaseController {
 			 Subject subject = SecurityUtils.getSubject();
 			 UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 			subject.login(token);
-			User users = userDao.findByUserName(username);
+			User users = userDao.findOne(Integer.valueOf(username));
 			request.getSession().setAttribute("users", users);
+			AdminIndexController.id = users.getId();
 			return redirect("/admin/index");
 		} catch (AuthenticationException e) {
 			model.put("message", e.getMessage());

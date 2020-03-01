@@ -72,7 +72,13 @@ public class MyRealm extends AuthorizingRealm {
 		String username = (String) token.getPrincipal();
 		
 //		User user = userService.findByUserName(username);
-		User user = userService.find(Integer.valueOf(username));
+		User user = new User();
+		try {
+			user = userService.find(Integer.valueOf(username));
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			throw new UnknownAccountException("请输入正确的用户名 整数");
+		}
 		
 		
 		String password = new String((char[]) token.getCredentials());

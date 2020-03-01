@@ -48,7 +48,7 @@
                         <span class="ng-scope">分类</span>
                     </li>
                     <li>
-                        <a class="J_menuItem" href="${ctx!}/admin/welcome">
+                        <a class="J_menuItem" id="toUserIndex" href="${ctx!}/admin/welcome">
                             <i class="fa fa-home"></i>
                             <span class="nav-label">主页</span>
                         </a>
@@ -94,12 +94,12 @@
                             </li>
                      		</@shiro.hasPermission>
                      		
-                     		<#--
-                         <@shiro.hasPermission name="system:course:index">
+                         <@shiro.hasPermission name="system:group:index">
                             <li>
-                                <a class="J_menuItem" href="${ctx!}/admin/course/index">课程信息管理</a>
+                                <a class="J_menuItem" href="${ctx!}/admin/group/index">项目信息管理</a>
                             </li>
                       </@shiro.hasPermission>
+                     		<#--
                          <@shiro.hasPermission name="system:teacher:index">
                             <li>
                                 <a class="J_menuItem" href="${ctx!}/admin/teacher/index">教师信息管理</a>
@@ -199,7 +199,7 @@
                 </nav>
             </div>
             <div class="row J_mainContent" id="content-main">
-                <iframe id="J_iframe" width="100%" height="100%" src="${ctx!}/admin/welcome" frameborder="0" data-id="index_v1.html" seamless></iframe>
+                <%-- <iframe id="J_iframe" width="100%" height="100%" src="${ctx!}/admin/welcome" frameborder="0" data-id="index_v1.html" seamless></iframe> --%>
             </div>
         </div>
         <!--右侧部分结束-->
@@ -215,6 +215,17 @@
     <!-- 自定义js -->
     <script src="${ctx!}/assets/js/hAdmin.js?v=4.1.0"></script>
     <script type="text/javascript" src="${ctx!}/assets/js/index.js"></script>
+    
+       <script type="text/javascript">
+
+    $(document).ready(function(){
+    	
+    		var id="${users.getId() }";
+    	  $("#toUserIndex").click(function(){
+    	    $("#toUserIndex").attr("href","/admin/welcome/"+id);
+    	  });
+    	});
+    </script>
 </body>
 
 </html>
