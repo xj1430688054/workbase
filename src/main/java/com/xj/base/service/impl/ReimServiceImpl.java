@@ -41,6 +41,8 @@ public class ReimServiceImpl extends BaseServiceImpl<Reim, Integer>
 
 	@Autowired
 	private IRoleService roleService;
+	
+	
 
 	@Override
 	public IBaseDao<Reim, Integer> getBaseDao() {
@@ -50,17 +52,19 @@ public class ReimServiceImpl extends BaseServiceImpl<Reim, Integer>
 
 
 	@Override
-	@CacheEvict(value = "reimCache")
 	public void saveOrUpdate(Reim reim, HttpServletRequest request) {
+		User user = (User)request.getSession().getAttribute("users");
 		if(reim.getId() != null){
 			Reim dbReim = find(reim.getId());
-			User user = (User)request.getAttribute("users");
 			dbReim.setPid(String.valueOf(user.getId()));
+			dbReim.setUpdateTime(new Date());
+			dbReim.setStatus(reim.getStatus());
 
 			update(dbReim);
 		}else{
+			reim.setStatus("0");
+			reim.setUid(String.valueOf(user.getId()));
 			reim.setCreateTime(new Date());
-			reim.setUpdateTime(new Date());
 			save(reim);
 		}
 	}

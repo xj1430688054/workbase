@@ -132,14 +132,6 @@
 			    },{
 			        title: "审批人",
 			        field: "pname",
-			        formatter: function(value,row,index){
-			        	if(value == 0)
-                    		return '<span class="label label-info">目录</span>';
-                    	else if(value == 1)
-                    		return '<span class="label label-primary">菜单</span>';
-                    	else if(value == 2)
-                    		return '<span class="label label-warning">按钮</span>';
-			        }
 			    },{
 			        title: "创建时间",
 			        field: "createTime",
@@ -154,19 +146,17 @@
 			        sortable: true,
                     formatter: function (value, row, index) {
                     	if(value == 0)
-                    		return '<span class="label label-info">显示</span>';
+                    		return '<span class="label label-info">未审批</span>';
                     	else if(value == 1)
-                    		return '<span class="label label-danger">隐藏</span>';
+                    		return '<span class="label label-info">审批同意</span>';
+                    	else if(value == 2)
+                    		return '<span class="label label-warning">审批不同意</span>';
                     }
-			    },{
-			        title: "更新时间",
-			        field: "updateTime",
-			        sortable: true
 			    },{
 			        title: "操作",
 			        field: "empty",
                     formatter: function (value, row, index) {
-                    	var operateHtml = '<@shiro.hasPermission name="system:reim:add"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;</@shiro.hasPermission>';
+                    	var operateHtml = '<@shiro.hasPermission name="system:reim:add"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;审批</button> &nbsp;</@shiro.hasPermission>';
                     	//operateHtml = operateHtml + '<@shiro.hasPermission name="system:reim:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button></@shiro.hasPermission>';
                         return operateHtml;
                     }

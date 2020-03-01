@@ -93,6 +93,8 @@
                                <a class="J_menuItem" href="${ctx!}/admin/reim/index">报销信息管理</a>
                             </li>
                      		</@shiro.hasPermission>
+                     		
+                     		<#--
                          <@shiro.hasPermission name="system:course:index">
                             <li>
                                 <a class="J_menuItem" href="${ctx!}/admin/course/index">课程信息管理</a>
@@ -120,6 +122,8 @@
                                 <a class="J_menuItem" href="${ctx!}/admin/score/index">成绩信息管理</a>
                             </li>
                         </@shiro.hasPermission>
+                        
+                        -->
                         
                          
                          <@shiro.hasPermission name="system:notice:index">

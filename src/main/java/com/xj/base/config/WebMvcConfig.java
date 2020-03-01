@@ -24,6 +24,8 @@ import com.xj.base.config.intercepter.CommonIntercepter;
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	@Autowired
 	private CommonIntercepter commonIntercepter;
+	
+	public final static String URL = "file:" + System.getProperty("user.dir").replaceAll("\\\\", "/") + "/src/main/resources/static/assets/img/" ;
 
 	/**
 	 * fastJson相关设置
@@ -72,14 +74,14 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    	String url = "file:" + System.getProperty("user.dir").replaceAll("\\\\", "/") + "/src/main/resources/static/assets/img/" ;
+//    	String url = "file:" + System.getProperty("user.dir").replaceAll("\\\\", "/") + "/src/main/resources/static/assets/img/" ;
         String os = System.getProperty("os.name");
         //如果是Windows系统
         if (os.toLowerCase().startsWith("win")) {
             registry.addResourceHandler("/img/**")
                     //项目外路径
 //                    .addResourceLocations("file:D:/img/");
-                    .addResourceLocations(url);
+                    .addResourceLocations(URL);
 
         } else {  //linux 和mac
             registry.addResourceHandler("/img/**")
