@@ -147,6 +147,7 @@
 	    $("#frm").validate({
     	    rules: {
     	    	userName: {
+    	    	number:true,
     	        required: true,
     	        minlength: 4,
     	    	maxlength: 10

@@ -67,7 +67,7 @@
     	    rules: {
     	      username: {
     	        required: true,
-    	        minlength: 2
+    	        minlength: 1
     	      },
     	      password: {
     	        required: true,
@@ -75,9 +75,9 @@
     	      }
     	    },
     	    messages: {
-    	      username: {
+    	      id: {
     	        required: "请输入用户名",
-    	        minlength: "用户名必需由两个字母组成"
+    	        minlength: "用户名必需由1个数字组成"
     	      },
     	      password: {
     	        required: "请输入密码",
