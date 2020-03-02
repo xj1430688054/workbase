@@ -25,10 +25,10 @@ insert into tb_resource (id, create_time, description, icon, is_hide, level, nam
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (26, '2017-01-11 16:48:48', '项目添加', null, 0, 3, '项目添加', 2, 'system:group:add', '/admin/group/add', 2, '2019-05-08 11:26:00', 24);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (27, '2017-01-11 16:48:48', '项目删除', null, 0, 3, '项目删除', 3, 'system:group:delete', '/admin/group/delete*', 2, '2019-05-08 11:26:00', 24);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (100, '2017-01-11 16:48:48', '项目人员', null, 0, 3, '项目人员', 3, 'system:group:grant', '/admin/group/grant*', 2, '2019-05-08 11:26:00', 24);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (28, '2017-01-10 13:56:51', '教师管理', null, 0, 2, '教师管理', 1, 'system:teacher:index', '/admin/teacher/index', 1, '2019-05-08 11:26:00', null);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (29, '2017-01-10 13:56:51', '教师修改', null, 0, 3, '教师编辑', 1, 'system:teacher:edit', '/admin/teacher/edit*', 2, '2019-05-08 11:26:00', 28);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (30, '2017-01-11 16:48:48', '教师添加', null, 0, 3, '教师添加', 2, 'system:teacher:add', '/admin/teacher/add', 2, '2019-05-08 11:26:00', 28);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (31, '2017-01-11 16:48:48', '教师删除', null, 0, 3, '教师删除', 3, 'system:teacher:delete', '/admin/teacher/delete*', 2, '2019-05-08 11:26:00', 28);
+insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (28, '2017-01-10 13:56:51', '日报管理', null, 0, 2, '日报管理', 1, 'system:sche:index', '/admin/sche/index', 1, '2019-05-08 11:26:00', null);
+insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (29, '2017-01-10 13:56:51', '日报修改', null, 0, 3, '日报编辑', 1, 'system:sche:edit', '/admin/sche/edit*', 2, '2019-05-08 11:26:00', 28);
+insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (30, '2017-01-11 16:48:48', '日报添加', null, 0, 3, '日报添加', 2, 'system:sche:add', '/admin/sche/add', 2, '2019-05-08 11:26:00', 28);
+insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (31, '2017-01-11 16:48:48', '日报删除', null, 0, 3, '日报删除', 3, 'system:sche:delete', '/admin/sche/delete*', 2, '2019-05-08 11:26:00', 28);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (32, '2017-01-10 13:56:51', '宿舍管理', null, 0, 2, '宿舍管理', 1, 'system:dorm:index', '/admin/dorm/index', 1, '2019-05-08 11:26:00', null);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (33, '2017-01-10 13:56:51', '宿舍修改', null, 0, 3, '宿舍编辑', 1, 'system:dorm:edit', '/admin/dorm/edit*', 2, '2019-05-08 11:26:00', 32);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (34, '2017-01-11 16:48:48', '宿舍查看', null, 0, 3, '宿舍查看', 2, 'system:dorm:add', '/admin/dorm/add', 2, '2019-05-08 11:26:00', 32);
@@ -200,5 +200,21 @@ insert into tb_group (id, name, status, validstatus) values (1, '审计一期', 
 insert into tb_group (id, name, status, validstatus) values (2, '审计二期', 1, 1);
 insert into tb_group (id, name, status, validstatus) values (3, '审计三期', 0, 1);
 insert into tb_group (id, name, status, validstatus) values (4, '审计四期', 0, 1);
+
+
+insert into tb_group_user (gid, uid) values (3, 33);
+insert into tb_group_user (gid, uid) values (3, 34);
+insert into tb_group_user (gid, uid) values (3, 35);
+insert into tb_group_user (gid, uid) values (3, 36);
+insert into tb_group_user (gid, uid) values (3, 37);
+insert into tb_group_user (gid, uid) values (3, 38);
+insert into tb_group_user (gid, uid) values (3, 39);
+insert into tb_group_user (gid, uid) values (4, 2);
+insert into tb_group_user (gid, uid) values (4, 40);
+insert into tb_group_user (gid, uid) values (4, 41);
+insert into tb_group_user (gid, uid) values (4, 42);
+insert into tb_group_user (gid, uid) values (4, 43);
+insert into tb_group_user (gid, uid) values (4, 44);
+insert into tb_group_user (gid, uid) values (4, 45);
 
 

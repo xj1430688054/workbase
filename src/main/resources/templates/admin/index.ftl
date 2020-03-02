@@ -99,12 +99,14 @@
                                 <a class="J_menuItem" href="${ctx!}/admin/group/index">项目信息管理</a>
                             </li>
                       </@shiro.hasPermission>
-                     		<#--
-                         <@shiro.hasPermission name="system:teacher:index">
+                     		
+                         <@shiro.hasPermission name="system:sche:index">
                             <li>
-                                <a class="J_menuItem" href="${ctx!}/admin/teacher/index">教师信息管理</a>
+                                <a class="J_menuItem" href="${ctx!}/admin/sche/index">日报信息管理</a>
                             </li>
                      </@shiro.hasPermission>
+                     
+                    
                          <@shiro.hasPermission name="system:dorm:index">
                             <li>
                                 <a class="J_menuItem" href="${ctx!}/admin/dorm/index">宿舍信息管理</a>
@@ -123,7 +125,7 @@
                             </li>
                         </@shiro.hasPermission>
                         
-                        -->
+                        
                         
                          
                          <@shiro.hasPermission name="system:notice:index">

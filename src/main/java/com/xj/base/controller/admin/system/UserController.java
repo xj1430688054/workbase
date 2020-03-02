@@ -49,6 +49,7 @@ public class UserController extends BaseController {
 		Page<User> page = userService.findAll(builder.generateSpecification(), getPageRequest());
 		for (User user : page) {
 			user.setRoleName(userService.findRoleNameById(user.getId()));
+			user.setGroupName(userService.findGroupName(user.getId()));
 		}
 		return page;
 	}

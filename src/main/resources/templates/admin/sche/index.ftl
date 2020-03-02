@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>用户列表</title>
+    <title>资源列表</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 
@@ -20,7 +20,6 @@
     <link href="${ctx!}/assets/css/animate.css" rel="stylesheet">
     <link href="${ctx!}/assets/css/style.css?v=4.1.0" rel="stylesheet">
 
-
 </head>
 
 <body class="gray-bg">
@@ -29,11 +28,11 @@
             <div class="col-sm-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5>用户管理</h5>
+                        <h5>日报管理</h5>
                     </div>
                     <div class="ibox-content">
                         <p>
-                        	<@shiro.hasPermission name="system:user:add">
+                        	<@shiro.hasPermission name="system:sche:add">
                         		<button class="btn btn-success " type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;添加</button>
                         	</@shiro.hasPermission>
                         </p>
@@ -58,7 +57,8 @@
     <!-- 全局js -->
     <script src="${ctx!}/assets/js/jquery.min.js?v=2.1.4"></script>
     <script src="${ctx!}/assets/js/bootstrap.min.js?v=3.3.6"></script>
-    
+
+
 	<!-- Bootstrap table -->
     <script src="${ctx!}/assets/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="${ctx!}/assets/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
@@ -75,14 +75,14 @@
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function () {
-        	//初始化表格,动态从服务器加载数据  
+			//初始化表格,动态从服务器加载数据  
 			$("#table_list").bootstrapTable({
 			    //使用get请求到服务器获取数据  
 			    method: "POST",
 			    //必须设置，不然request.getParameter获取不到请求参数
 			    contentType: "application/x-www-form-urlencoded",
 			    //获取数据的Servlet地址  
-			    url: "${ctx!}/admin/user/list",
+			    url: "${ctx!}/admin/sche/list",
 			    //表格显示条纹  
 			    striped: true,
 			    //启动分页  
@@ -116,49 +116,25 @@
 			        field: "id",
 			        sortable: true
 			    },{
-			        title: "用户名",
-			        field: "userName"
+			        title: "姓名",
+			        field: "uname"
 			    },{
-			        title: "所属角色",
-			        field: "roleName",
+			        title: "日报内容",
+			        field: "name"
 			    },{
-			        title: "昵称",
-			        field: "nickName"
-			    },{
-			        title: "性别",
-			        field: "sex",
-			        formatter: function(value, row, index) {
-                        if (value == '0') 
-                        	return '<span class="label label-warning">女</span>';
-                        return '<span class="label label-primary">男</span>';
-                    }
-			    },{
-			        title: "出生日期",
-			        field: "birthday"
-			    },{
-			        title: "电话",
-			        field: "telephone"
-			    },{
-			        title: "邮箱",
-			        field: "email"
-			    },{
-			        title: "项目组",
-			        field: "groupName"
+			        title: "时间",
+			        field: "scheDate",
+			        sortable: true
 			    },{
 			        title: "创建时间",
 			        field: "createTime",
 			        sortable: true
 			    },{
-			        title: "更新时间",
-			        field: "updateTime",
-			        sortable: true
-			    },{
 			        title: "操作",
 			        field: "empty",
                     formatter: function (value, row, index) {
-                    	var operateHtml = '<@shiro.hasPermission name="system:user:edit"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;</@shiro.hasPermission>';
-                    	operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;</@shiro.hasPermission>';
-                    	operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:grant"><button class="btn btn-info btn-xs" type="button" onclick="grant(\''+row.id+'\')"><i class="fa fa-arrows"></i>&nbsp;关联角色</button></@shiro.hasPermission>';
+                    	var operateHtml = '<@shiro.hasPermission name="system:sche:add"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;</@shiro.hasPermission>';
+                    	//operateHtml = operateHtml + '<@shiro.hasPermission name="system:sche:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button></@shiro.hasPermission>';
                         return operateHtml;
                     }
 			    }]
@@ -168,11 +144,11 @@
         function edit(id){
         	layer.open({
         	      type: 2,
-        	      title: '用户修改',
+        	      title: '资源修改',
         	      shadeClose: true,
         	      shade: false,
         	      area: ['893px', '600px'],
-        	      content: '${ctx!}/admin/user/edit/' + id,
+        	      content: '${ctx!}/admin/sche/edit/' + id,
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
        	    	  }
@@ -181,24 +157,11 @@
         function add(){
         	layer.open({
         	      type: 2,
-        	      title: '用户添加',
+        	      title: '资源添加',
         	      shadeClose: true,
         	      shade: false,
         	      area: ['893px', '600px'],
-        	      content: '${ctx!}/admin/user/add',
-        	      end: function(index){
-        	    	  $('#table_list').bootstrapTable("refresh");
-       	    	  }
-        	    });
-        }
-        function grant(id){
-        	layer.open({
-        	      type: 2,
-        	      title: '关联角色',
-        	      shadeClose: true,
-        	      shade: false,
-        	      area: ['893px', '600px'],
-        	      content: '${ctx!}/admin/user/grant/'  + id,
+        	      content: '${ctx!}/admin/sche/add',
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
        	    	  }
@@ -209,7 +172,7 @@
         		$.ajax({
     	    		   type: "POST",
     	    		   dataType: "json",
-    	    		   url: "${ctx!}/admin/user/delete/" + id,
+    	    		   url: "${ctx!}/admin/sche/delete/" + id,
     	    		   success: function(msg){
 	 	   	    			layer.msg(msg.message, {time: 2000},function(){
 	 	   	    				$('#table_list').bootstrapTable("refresh");

@@ -121,5 +121,11 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements I
 		// TODO Auto-generated method stub
 		return userDao.findYesUser(id);
 	}
+
+	@Override
+	public String findGroupName(Integer id) {
+		// TODO Auto-generated method stub
+		return userDao.findGroupName(id);
+	}
 	
 }

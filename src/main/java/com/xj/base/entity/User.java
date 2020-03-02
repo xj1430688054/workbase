@@ -19,6 +19,8 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.xj.base.entity.support.BaseEntity;
 
+import lombok.Data;
+
 /**
  * <p>
  * 用户账户表
@@ -27,6 +29,7 @@ import com.xj.base.entity.support.BaseEntity;
  * @author xujian
  * @since 2020-02-28
  */
+@Data
 @Entity
 @Table(name = "tb_user")
 public class User extends BaseEntity {
@@ -120,138 +123,15 @@ public class User extends BaseEntity {
 	@JoinTable(name = "tb_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
 	private java.util.Set<Role> roles;
 	
-	@JsonIgnoreProperties(value = {"users"})
-	@JSONField(serialize = false)
-	@ManyToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinTable(name = "tb_Group_role", joinColumns = { @JoinColumn(name = "uid") }, inverseJoinColumns = { @JoinColumn(name = "gid") })
-	private java.util.Set<Group> groups;
+//	@JsonIgnoreProperties(value = {"users"})
+//	@JSONField(serialize = false)
+//	@ManyToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
+//	@JoinTable(name = "tb_Group_user", joinColumns = { @JoinColumn(name = "uid") }, inverseJoinColumns = { @JoinColumn(name = "gid") })
+//	private java.util.Set<Group> groups;
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getNickName() {
-		return nickName;
-	}
 	
-	public synchronized String getRoleName() {
-		return roleName;
-	}
-
-	public synchronized void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Integer getSex() {
-		return sex;
-	}
-
-	public void setSex(Integer sex) {
-		this.sex = sex;
-	}
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public Integer getDeleteStatus() {
-		return deleteStatus;
-	}
-
-	public void setDeleteStatus(Integer deleteStatus) {
-		this.deleteStatus = deleteStatus;
-	}
-
-	public Integer getLocked() {
-		return locked;
-	}
-
-	public void setLocked(Integer locked) {
-		this.locked = locked;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
-	public java.util.Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(java.util.Set<Role> roles) {
-		this.roles = roles;
-	}
+	@Transient
+	private String groupName;
+	
 
 }

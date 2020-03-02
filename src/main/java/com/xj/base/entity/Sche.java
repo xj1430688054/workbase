@@ -10,28 +10,33 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.xj.base.entity.support.BaseEntity;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tb_score")
-public class Score extends BaseEntity{
+@Table(name = "tb_sche")
+public class Sche extends BaseEntity{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
     private Integer id;
 
-	private Integer cid;
+	private Integer uid;
 	
-	private Integer sid;
+	private String Name;
 	
-	private Integer score;
+	@JSONField(format = "yyyy-MM-dd")
+	private Date scheDate;
+	
+	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
+	private Date createTime;
 	
 	@Transient
-	private String stuname;
+	private String uname;
 	
 	@Transient
 	private String coname;

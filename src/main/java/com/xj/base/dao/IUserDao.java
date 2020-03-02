@@ -20,11 +20,15 @@ public interface IUserDao extends IBaseDao<User, Integer> {
 	String findNameByid(String pid);
 	
 	/** 查找目前没有工作的员工*/
-	@Query(nativeQuery = true,value = "select a.* from tb_user a where a.id not in (select b.uid from tb_group_role  b where b.gid  in(select c.id  from tb_group c where c.status = '0'))")
+	@Query(nativeQuery = true,value = "select a.* from tb_user a where a.id not in (select b.uid from tb_group_user  b where b.gid  in(select c.id  from tb_group c where c.status = '0'))")
 	List<User> findNOUser();
 
 	/** 查找当前项目组的员工 */
-	@Query(nativeQuery = true,value = "select a.* from tb_user a where a.id in (select b.uid from tb_group_role b where b.gid = ?1)")
+	@Query(nativeQuery = true,value = "select a.* from tb_user a where a.id in (select b.uid from tb_group_user b where b.gid = ?1)")
 	List<User> findYesUser(Integer id);
+	
+	/** 查找当前项目组的员工 */
+	@Query(nativeQuery = true,value ="select a.name  from tb_group a  where a.id = (select c.gid from tb_group_user c where  c.gid in (select b.id from tb_group b where status = 0) and c.uid = ?1)")
+	String findGroupName (Integer id);
 
 }

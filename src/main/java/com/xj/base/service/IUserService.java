@@ -45,6 +45,9 @@ public interface IUserService extends IBaseService<User, Integer> {
 	/** 查找现在已经分配的员工 
 	 * @param id */
 	List<User> findYesUser(Integer id);
+	
+	/** 查找当前员工所属于的项目组*/
+	String findGroupName (Integer id);
 
 
 }

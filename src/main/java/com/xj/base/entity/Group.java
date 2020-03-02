@@ -52,8 +52,19 @@ public class Group extends BaseEntity{
 	@JsonIgnoreProperties(value = {"roles"})
 	@JSONField(serialize = false)
 	@ManyToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinTable(name = "tb_group_role", joinColumns = { @JoinColumn(name = "gid") }, inverseJoinColumns = { @JoinColumn(name = "uid") })
+	@JoinTable(name = "tb_group_user", joinColumns = { @JoinColumn(name = "gid") }, inverseJoinColumns = { @JoinColumn(name = "uid") })
 	private java.util.Set<User> users;
+
+
+	
+
+
+//	public void setUsers(java.util.Set<User> users) {
+//		this.users = users;
+//	}
+	
+	
+  
 	
 	
 

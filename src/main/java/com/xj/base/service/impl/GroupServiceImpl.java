@@ -19,6 +19,7 @@ import com.xj.base.service.IGroupService;
 import com.xj.base.service.IUserService;
 import com.xj.base.service.support.impl.BaseServiceImpl;
 
+
 @Service
 public class GroupServiceImpl extends BaseServiceImpl<Group, Integer> implements IGroupService{
 	
