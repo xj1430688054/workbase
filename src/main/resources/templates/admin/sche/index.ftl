@@ -116,6 +116,9 @@
 			        field: "id",
 			        sortable: true
 			    },{
+			        title: "员工id",
+			        field: "uid"
+			    },{
 			        title: "姓名",
 			        field: "uname"
 			    },{

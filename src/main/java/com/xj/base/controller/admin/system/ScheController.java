@@ -41,6 +41,9 @@ public class ScheController extends BaseController{
 		String searchText = request.getParameter("searchText");
 		if(StringUtils.isNotBlank(searchText)){
 			builder.add("name", Operator.likeAll.name(), searchText);
+			builder.add("sche_date", Operator.likeAll.name(), searchText);
+			builder.add("uid", Operator.likeAll.name(), searchText);
+			
 		}
 		Page<Sche> page = scheService.findAll(builder.generateSpecification(),getPageRequest());
 		for (Sche sche : page) {

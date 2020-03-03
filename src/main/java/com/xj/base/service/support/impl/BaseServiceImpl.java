@@ -37,6 +37,12 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
     }
 
     @Override
+	public List<T> findAll(Specification<T> spec) {
+		// TODO Auto-generated method stub
+		return getBaseDao().findAll(spec);
+	}
+
+	@Override
     public List<T> findList(Specification<T> spec, Sort sort) {
         return getBaseDao().findAll(spec, sort);
     }

@@ -21,10 +21,13 @@
                                     <input id="userName" name="userName" class="form-control" type="text" value="${user.userName}" <#if user?exists> readonly="readonly"</#if> >
                                 </div>
                             </div>
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">密码：</label>
+                                   <div class="form-group">
+                                <label class="col-sm-3 control-label">头像：</label>
                                 <div class="col-sm-8">
-                                    <input text="password" id="password" name="password" class="form-control-password" type="text" ">
+                                      <img alt="image" class="img-responsive" src="/${user.url}">
+                                      
+                                      <input type="hidden" id="url" name="url" value="${user.url}">
+                                      
                                 </div>
                             </div>
                             <div class="form-group">

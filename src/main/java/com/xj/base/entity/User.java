@@ -29,6 +29,7 @@ import lombok.Data;
  * @author xujian
  * @since 2020-02-28
  */
+
 @Data
 @Entity
 @Table(name = "tb_user")
@@ -132,6 +133,9 @@ public class User extends BaseEntity {
 	
 	@Transient
 	private String groupName;
+	
+	/** 头像路劲*/
+	private String url;
 	
 
 }

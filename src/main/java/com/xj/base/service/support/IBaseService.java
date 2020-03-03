@@ -20,6 +20,8 @@ public interface IBaseService<T, ID extends Serializable> {
     public abstract Page<T> findAll(Pageable pageable);
 
     public abstract Page<T> findAll(Specification<T> spec, Pageable pageable);
+    
+    public abstract List<T> findAll(Specification<T> spec);
 
     public abstract long count();
 

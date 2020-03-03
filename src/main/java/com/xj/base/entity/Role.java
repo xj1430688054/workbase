@@ -74,7 +74,8 @@ public class Role extends BaseEntity {
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
 	
-	@JSONField(serialize = false)
+//	@JSONField(serialize = false)
+	@JSONField()
 	@ManyToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	@JoinTable(name = "tb_role_resource", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = { @JoinColumn(name = "resource_id") })
 	private java.util.Set<Resource> resources;

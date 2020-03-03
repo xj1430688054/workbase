@@ -173,14 +173,15 @@
                         </li>
                           <li class="dropdown">
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
+                                <i class="fa fa-bell"></i> <span class="label label-primary">${count} }</span>
                             </a>
                             <ul class="dropdown-menu dropdown-alerts">
+                            <#if status == 1>
                                 <li>
                                     <a href="${ctx!}/admin/tips/">
                                         <div>
-                                            <i class="fa fa-envelope fa-fw"></i> 您有16条未读消息
-                                            <span class="pull-right text-muted small">4分钟前</span>
+                                            <i class="fa fa-envelope fa-fw"></i> ${tip} }
+                                            <#-- <span class="pull-right text-muted small">4分钟前</span> -->
                                         </div>
                                     </a>
                                 </li>
@@ -188,12 +189,14 @@
                                 <li class="divider"></li>
                                 <li>
                                     <div class="text-center link-block">
-                                        <a class="J_menuItem" href="${ctx!}/admin/tips/">
+                                        <a class="J_menuItem" href="${ctx!}/admin/reim/index">
                                             <strong>查看所有 </strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
                                     </div>
                                 </li>
+                                
+                                </#if>
                             </ul>
                         </li>
                  
