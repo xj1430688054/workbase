@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
 import com.xj.base.common.utils.MD5Utils;
 import com.xj.base.dao.IUserDao;
 import com.xj.base.dao.support.IBaseDao;
+import com.xj.base.entity.Group;
 import com.xj.base.entity.Role;
 import com.xj.base.entity.User;
 import com.xj.base.service.IRoleService;
@@ -58,6 +59,8 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements I
 			dbUser.setLocked(user.getLocked());
 			dbUser.setDescription(user.getDescription());
 			dbUser.setUpdateTime(new Date());
+			
+			dbUser.setCredentialNo(user.getCredentialNo());
 			update(dbUser);
 		}else{
 			user.setCreateTime(new Date());
@@ -127,5 +130,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements I
 		// TODO Auto-generated method stub
 		return userDao.findGroupName(id);
 	}
+
+	
 	
 }

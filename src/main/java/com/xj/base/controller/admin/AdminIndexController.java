@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xj.base.controller.BaseController;
+import com.xj.base.entity.Group;
 import com.xj.base.entity.Reim;
 import com.xj.base.entity.Resource;
 import com.xj.base.entity.Role;
@@ -75,6 +76,8 @@ public class AdminIndexController extends BaseController{
 	public String welcome(Model model){
 		User user = userService.find(id);
 		model.addAttribute("user", user);
+		String isown  = "true";
+		model.addAttribute("isown", isown);
 		return "admin/welcome";
 	}
 	
@@ -82,6 +85,17 @@ public class AdminIndexController extends BaseController{
 	public String welcome1(@PathVariable Integer ids,ModelMap map){
 		User user = userService.find(ids);
 		map.addAttribute("user", user);
+		User user1 = (User)request.getSession().getAttribute("users");
+		
+		
+		String isown  = "false";
+		if (ids == user1.getId()) {
+			isown = "true";
+		}
+		map.addAttribute("isown", isown);
+//		List<Group> groups = userService.findHisUser(ids);
+//		map.addAttribute("groups", groups);
+		
 		return "admin/welcome";
 	}
 }

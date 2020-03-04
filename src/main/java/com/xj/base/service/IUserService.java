@@ -2,6 +2,7 @@ package com.xj.base.service;
 
 import java.util.List;
 
+import com.xj.base.entity.Group;
 import com.xj.base.entity.User;
 import com.xj.base.service.support.IBaseService;
 
@@ -48,6 +49,8 @@ public interface IUserService extends IBaseService<User, Integer> {
 	
 	/** 查找当前员工所属于的项目组*/
 	String findGroupName (Integer id);
+	
+
 
 
 }

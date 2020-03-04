@@ -2,6 +2,7 @@ package com.xj.base.service.impl;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +43,12 @@ public class GroupServiceImpl extends BaseServiceImpl<Group, Integer> implements
 			Group dbGroup = find(group.getId());
 			dbGroup.setName(group.getName());
 			dbGroup.setStatus(group.getStatus());
+			dbGroup.setUpdateTime(new Date());
 			update(dbGroup);
 		}else{
 			group.setValidstatus(1);
 			group.setStatus(0);
+			group.setCreateTime(new Date());
 			save(group);
 		}
 		
@@ -68,6 +71,12 @@ public class GroupServiceImpl extends BaseServiceImpl<Group, Integer> implements
 		group.setUsers(users);
 		update(group);
 		
+	}
+	
+	@Override
+	public List<Group> findHisUser(Integer id) {
+		// TODO Auto-generated method stub
+		return groupDao.findHisUser(id);
 	}
 
 }

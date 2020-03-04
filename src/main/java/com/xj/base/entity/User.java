@@ -134,6 +134,10 @@ public class User extends BaseEntity {
 	@Transient
 	private String groupName;
 	
+	/** 身份证号码 */
+	private String credentialNo ;
+
+	
 	/** 头像路劲*/
 	private String url;
 	

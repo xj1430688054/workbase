@@ -1,5 +1,7 @@
 package com.xj.base.entity;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,6 +57,18 @@ public class Group extends BaseEntity{
 	@JoinTable(name = "tb_group_user", joinColumns = { @JoinColumn(name = "gid") }, inverseJoinColumns = { @JoinColumn(name = "uid") })
 	private java.util.Set<User> users;
 
+	
+	/**
+	 * 创建时间
+	 */
+	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
+	private Date createTime;
+
+	/**
+	 * 更新时间
+	 */
+	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
+	private Date updateTime;
 
 	
 

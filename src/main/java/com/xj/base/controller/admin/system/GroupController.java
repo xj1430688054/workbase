@@ -37,6 +37,19 @@ public class GroupController extends BaseController{
 		return "admin/group/index";
 	}
 	
+	@RequestMapping("/indexhis")
+	public String indexhis(ModelMap map) {
+		return "admin/group/indexhis";
+	}
+	
+	
+	@RequestMapping("/listhis")
+	@ResponseBody
+	public List<Group> listhis(ModelMap map) {
+		User user = (User)request.getSession().getAttribute("users");
+		List<Group> groups = groupService.findHisUser(user.getId());
+		return groups;
+	}
 	
 	@RequestMapping(value = { "/list" })
 	@ResponseBody
@@ -122,6 +135,27 @@ public class GroupController extends BaseController{
 		return JsonResult.success();
 	}
 	
+	
+	@RequestMapping(value = "/person/{id}", method = RequestMethod.GET)
+	public String person(@PathVariable Integer id,ModelMap map) {
+		Group group = groupService.find(id);
+		map.put("group", group);
+		return "admin/group/person";
+	}
+	
+	@RequestMapping(value= {"/person/{id}"}, method = RequestMethod.POST)
+	@ResponseBody
+	public JsonResult person(Group group,ModelMap map){
+		try {
+			group = groupService.find(group.getId());
+			map.put("group", group);
+			Set<User> users = group.getUsers();
+			return JsonResult.success(users);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return JsonResult.failure(e.getMessage());
+		}
+	}
 	
 
 }

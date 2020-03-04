@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>资源列表</title>
+    <title>项目列表</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 
@@ -28,11 +28,11 @@
             <div class="col-sm-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5>报销管理</h5>
+                        <h5>项目历史</h5>
                     </div>
                     <div class="ibox-content">
                         <p>
-                        	<@shiro.hasPermission name="system:reim:add">
+                        	<@shiro.hasPermission name="system:group:add">
                         		<button class="btn btn-success " type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;添加</button>
                         	</@shiro.hasPermission>
                         </p>
@@ -80,13 +80,13 @@
 			    //使用get请求到服务器获取数据  
 			    method: "POST",
 			    //必须设置，不然request.getParameter获取不到请求参数
-			    contentType: "application/x-www-form-urlencoded",
+			    contentType: "application/json",
 			    //获取数据的Servlet地址  
-			    url: "${ctx!}/admin/reim/list",
+			    url: "${ctx!}/admin/group/listhis",
 			    //表格显示条纹  
 			    striped: true,
 			    //启动分页  
-			    pagination: true,
+			    pagination: false,
 			    //每页显示的记录数  
 			    pageSize: 10,
 			    //当前第几页  
@@ -94,8 +94,9 @@
 			    //记录数可选列表  
 			    pageList: [5, 10, 15, 20, 25],
 			    //是否启用查询  
-			    search: true,
+			    search: false,
 			    //是否启用详细信息视图
+			    detailView:true,
 			    detailFormatter:detailFormatter,
 			    //表示服务端请求  
 			    sidePagination: "server",
@@ -105,8 +106,8 @@
 			    //json数据解析
 			    responseHandler: function(res) {
 			        return {
-			            "rows": res.content,
-			            "total": res.totalElements
+			            "rows": res,
+			            "total": res
 			        };
 			    },
 			    //数据列
@@ -115,49 +116,35 @@
 			        field: "id",
 			        sortable: true
 			    },{
-			        title: "报销名称",
+			        title: "项目名称",
 			        field: "name"
 			    },{
-			    	title : '报销图片',
-			    	field : 'url',
-			    	align : 'center',
-			    	formatter:function (value,row,index)
-			    	{
-			    	    return '<img  src=/'+value+' width="100" height="100" class="img-rounded"   >';
-
-			    	}
+			        title: "项目状态",
+			        field: "status",
+			        formatter: function(value,row,index){
+			        	if(value == 0)
+                    		return '<span class="label label-info">未完结</span>';
+                    	else if(value == 1)
+                    		return '<span class="label label-primary">已完结</span>';
+			        }
 			    },{
-			        title: "申请人",
-			        field: "uname"
-			    },{
-			        title: "审批人",
-			        field: "pname",
+			        title: "层级",
+			        field: "level",
+			        sortable: true
 			    },{
 			        title: "创建时间",
 			        field: "createTime",
 			        sortable: true
 			    },{
-			        title: "最后更新时间",
+			        title: "更新时间",
 			        field: "updateTime",
 			        sortable: true
-			    },{
-			        title: "状态",
-			        field: "status",
-			        sortable: true,
-                    formatter: function (value, row, index) {
-                    	if(value == 0)
-                    		return '<span class="label label-info">未审批</span>';
-                    	else if(value == 1)
-                    		return '<span class="label label-info">审批同意</span>';
-                    	else if(value == 2)
-                    		return '<span class="label label-warning">审批不同意</span>';
-                    }
 			    },{
 			        title: "操作",
 			        field: "empty",
                     formatter: function (value, row, index) {
-                    	var operateHtml = '<@shiro.hasPermission name="system:reim:add"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;审批</button> &nbsp;</@shiro.hasPermission>';
-                    	//operateHtml = operateHtml + '<@shiro.hasPermission name="system:reim:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button></@shiro.hasPermission>';
+                    	var operateHtml = '<@shiro.hasPermission name="system:group:add"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;查看项目人员</button> &nbsp;</@shiro.hasPermission>';
+
                         return operateHtml;
                     }
 			    }]
@@ -171,7 +158,7 @@
         	      shadeClose: true,
         	      shade: false,
         	      area: ['893px', '600px'],
-        	      content: '${ctx!}/admin/reim/edit/' + id,
+        	      content: '${ctx!}/admin/group/person/' + id,
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
        	    	  }
@@ -184,7 +171,7 @@
         	      shadeClose: true,
         	      shade: false,
         	      area: ['893px', '600px'],
-        	      content: '${ctx!}/admin/reim/add',
+        	      content: '${ctx!}/admin/group/add',
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
        	    	  }
@@ -195,7 +182,7 @@
         		$.ajax({
     	    		   type: "POST",
     	    		   dataType: "json",
-    	    		   url: "${ctx!}/admin/reim/delete/" + id,
+    	    		   url: "${ctx!}/admin/group/delete/" + id,
     	    		   success: function(msg){
 	 	   	    			layer.msg(msg.message, {time: 2000},function(){
 	 	   	    				$('#table_list').bootstrapTable("refresh");
@@ -205,6 +192,26 @@
     	    	});
        		});
         }
+        
+        function grant(id){
+        	layer.open({
+        	      type: 2,
+        	      title: '项目用户',
+        	      shadeClose: true,
+        	      shade: false,
+        	      area: ['893px', '600px'],
+        	      content: "${ctx!}/admin/group/grant/" + id,
+        	      end: function(index){
+        	    	  $('#table_list').bootstrapTable("refresh");
+       	    	  }
+        	    });
+        }
+        
+        function detailFormatter(index, row) {
+	        var html = [];
+	        html.push('<p><b>描述:</b> ' + row.description + '</p>');
+	        return html.join('');
+	    }
         
         function detailFormatter(index, row) {
             var html = []

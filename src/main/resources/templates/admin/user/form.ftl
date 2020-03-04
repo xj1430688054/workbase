@@ -60,6 +60,13 @@
                                     <input id="nickName" name="nickName" class="form-control" type="text" value="${user.nickName}">
                                 </div>
                             </div>
+                            
+                                <div class="form-group">
+                                <label class="col-sm-3 control-label">身份证号：</label>
+                                <div class="col-sm-8">
+                                    <input id="credentialNo" name="credentialNo" class="form-control" type="text" value="${user.credentialNo}">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">性别：</label>
                                 <div class="col-sm-8">
