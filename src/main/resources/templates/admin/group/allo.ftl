@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title> - 表单验证 </title>
+    <title> - 表单验证 jQuery Validation</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 
@@ -28,7 +28,7 @@
                         
                     </div>
                     <div class="ibox-content">
-                        
+                        <p>为【${group.name}】分配组长</p>
                     </div>
                 </div>
             </div>
@@ -37,20 +37,27 @@
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>资源编辑</h5>
+                        <h5>选择成员</h5>
                     </div>
                     <div class="ibox-content">
-                        <form class="form-horizontal m-t" id="frm" method="post" action="${ctx!}/admin/sche/edit">
-                        	<input type="hidden" id="id" name="id" value="${sche.id}">
-                 			<input type="hidden" id="uid" name="uid" value="${sche.uid}">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">日报内容：</label>
-                                <div class="col-sm-8">
-                                    <input id="name" name="name" class="form-control" type="text" value="${sche.name}">
+                        <form class="form-horizontal" id="frm" method="post" action="${ctx!}/admin/group/save">
+                        	<input type="hidden" id="id" name="id" value="${group.id}">
+                        	<div class="form-group">
+                        		<#list users as user>
+                                <div class="col-sm-12">
+                                    <div class="checkbox i-checks">
+                                        <label>
+                                        
+                                        	<#if user.id==group.leader >
+                                            	<input type="radio" value="${user.id}" name="uid" checked="checked"> <i></i> ${user.nickName}   ${uid} ${group.leader }
+                                            <#else>
+                                            	<input type="radio" value="${user.id}" name="uid"> <i></i> ${user.nickName}
+                                            </#if>
+                                        </label>
+                                    </div>
                                 </div>
+                                </#list>
                             </div>
-                          
-                           
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <button class="btn btn-primary" type="submit">提交</button>
@@ -79,50 +86,14 @@
     <script src="${ctx!}/assets/js/plugins/layer/laydate/laydate.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
-	  	
 	    $("#frm").validate({
-    	    rules: {
-    	    	name: {
-    	        required: true,
-    	        minlength: 4,
-    	    	maxlength: 20
-    	      },
-    	      	sourceKey: {
-    	        required: true,
-    	        minlength: 4,
-    	    	maxlength: 40
-    	      },
-    	      	type: {
-    	        required: true
-    	      },
-    	      	sourceUrl: {
-    	        required: true
-    	      },
-    	      	level: {
-    	        required: true,
-    	        number:true
-    	      },
-    	      	sort: {
-    	      	number:true,
-    	        required: true
-    	      },
-    	      	icon: {
-    	        maxlength: 40
-    	      },
-    	      	isHide: {
-    	        required: true
-    	      },
-    	      	description: {
-    	        required: true,
-    	        maxlength: 40
-    	      }
-    	    },
+    	    rules: {},
     	    messages: {},
     	    submitHandler:function(form){
     	    	$.ajax({
    	    		   type: "POST",
    	    		   dataType: "json",
-   	    		   url: "${ctx!}/admin/sche/edit",
+   	    		   url: "${ctx!}/admin/group/allo/" + ${group.id},
    	    		   data: $(form).serialize(),
    	    		   success: function(msg){
 	   	    			layer.msg(msg.message, {time: 2000},function(){

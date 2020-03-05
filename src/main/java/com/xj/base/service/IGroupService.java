@@ -14,6 +14,11 @@ public interface IGroupService extends IBaseService<Group, Integer>{
 	/** 查找个人项目历史 */
 	List<Group> findHisUser(Integer id);
 
+	void allo(Integer id, String uid);
+	
+	/** 根据用户id 查找当前项目组 */
+	List<Group> findGroupByUid (Integer id);
+
 	
 
 }

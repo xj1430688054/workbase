@@ -48,6 +48,11 @@ public class GroupController extends BaseController{
 	public List<Group> listhis(ModelMap map) {
 		User user = (User)request.getSession().getAttribute("users");
 		List<Group> groups = groupService.findHisUser(user.getId());
+		for (Group group : groups) {
+			if (null != group.getLeader()) {
+				group.setLname(userService.findNameById(String.valueOf(group.getLeader())));
+			}
+		}
 		return groups;
 	}
 	
@@ -62,7 +67,9 @@ public class GroupController extends BaseController{
 		}
 		Page<Group> page = groupService.findAll(builder.generateSpecification(), getPageRequest());
 		for (Group group : page) {
-//			group.setRoleName(groupService.findRoleNameById(group.getId()));
+			if (null != group.getLeader()) {
+				group.setLname(userService.findNameById(String.valueOf(group.getLeader())));
+			}
 		}
 		return page;
 	}
@@ -155,6 +162,37 @@ public class GroupController extends BaseController{
 			e.printStackTrace();
 			return JsonResult.failure(e.getMessage());
 		}
+	}
+	
+	
+	@RequestMapping(value = "/allo/{id}", method = RequestMethod.GET)
+	public String allo(@PathVariable Integer id, ModelMap map) {
+		Group group = groupService.find(id);
+		map.put("group", group);
+		
+		List<User> users = userService.findYesUser(group.getId());
+		for (User user : users) {
+			if("组长".equals(user.getRoles().iterator().next().getName())) {
+				Integer uid = user.getRoles().iterator().next().getId();
+				map.put("uid", uid);
+				
+			}
+		}
+		
+		map.put("users", users);
+		return "admin/group/allo";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/allo/{id}", method = RequestMethod.POST)
+	public JsonResult allo(@PathVariable Integer id,String uid, ModelMap map) {
+		try {
+			groupService.allo(id,uid );
+		} catch (Exception e) {
+			e.printStackTrace();
+			return JsonResult.failure(e.getMessage());
+		}
+		return JsonResult.success();
 	}
 	
 

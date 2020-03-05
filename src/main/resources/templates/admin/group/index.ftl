@@ -128,8 +128,8 @@
                     		return '<span class="label label-primary">已完结</span>';
 			        }
 			    },{
-			        title: "层级",
-			        field: "level",
+			        title: "组长名字",
+			        field: "lname",
 			        sortable: true
 			    },{
 			        title: "创建时间",
@@ -146,6 +146,7 @@
                     	var operateHtml = '<@shiro.hasPermission name="system:group:add"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;</@shiro.hasPermission>';
                     	operateHtml = operateHtml + '<@shiro.hasPermission name="system:group:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button></@shiro.hasPermission>';
                     	operateHtml = operateHtml + '<@shiro.hasPermission name="system:group:grant"><button class="btn btn-info btn-xs" type="button" onclick="grant(\''+row.id+'\')"><i class="fa fa-arrows"></i>&nbsp;选择成员</button></@shiro.hasPermission>';
+                    	operateHtml = operateHtml + '<@shiro.hasPermission name="system:group:grant"><button class="btn btn-info btn-xs" type="button" onclick="allo(\''+row.id+'\')"><i class="fa fa-arrows"></i>&nbsp;分配组长</button></@shiro.hasPermission>';
 
                         return operateHtml;
                     }
@@ -209,6 +210,20 @@
         	    });
         }
         
+        
+        function allo(id){
+        	layer.open({
+        	      type: 2,
+        	      title: '分配组长',
+        	      shadeClose: true,
+        	      shade: false,
+        	      area: ['893px', '600px'],
+        	      content: "${ctx!}/admin/group/allo/" + id,
+        	      end: function(index){
+        	    	  $('#table_list').bootstrapTable("refresh");
+       	    	  }
+        	    });
+        }
         function detailFormatter(index, row) {
 	        var html = [];
 	        html.push('<p><b>描述:</b> ' + row.description + '</p>');

@@ -69,6 +69,12 @@ public class Group extends BaseEntity{
 	 */
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
+	
+	/** 组长id */
+	private Integer leader;
+	
+	/** 组长名字*/
+	private String lname;
 
 	
 

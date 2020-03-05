@@ -128,8 +128,8 @@
                     		return '<span class="label label-primary">已完结</span>';
 			        }
 			    },{
-			        title: "层级",
-			        field: "level",
+			        title: "组长",
+			        field: "leader",
 			        sortable: true
 			    },{
 			        title: "创建时间",

@@ -29,20 +29,10 @@ insert into tb_resource (id, create_time, description, icon, is_hide, level, nam
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (29, '2017-01-10 13:56:51', '日报修改', null, 0, 3, '日报编辑', 1, 'system:sche:edit', '/admin/sche/edit*', 2, '2019-05-08 11:26:00', 28);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (30, '2017-01-11 16:48:48', '日报添加', null, 0, 3, '日报添加', 2, 'system:sche:add', '/admin/sche/add', 2, '2019-05-08 11:26:00', 28);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (31, '2017-01-11 16:48:48', '日报删除', null, 0, 3, '日报删除', 3, 'system:sche:delete', '/admin/sche/delete*', 2, '2019-05-08 11:26:00', 28);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (32, '2017-01-10 13:56:51', '宿舍管理', null, 0, 2, '宿舍管理', 1, 'system:dorm:index', '/admin/dorm/index', 1, '2019-05-08 11:26:00', null);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (33, '2017-01-10 13:56:51', '宿舍修改', null, 0, 3, '宿舍编辑', 1, 'system:dorm:edit', '/admin/dorm/edit*', 2, '2019-05-08 11:26:00', 32);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (34, '2017-01-11 16:48:48', '宿舍查看', null, 0, 3, '宿舍查看', 2, 'system:dorm:add', '/admin/dorm/add', 2, '2019-05-08 11:26:00', 32);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (35, '2017-01-10 13:56:51', '宿舍删除', null, 0, 3, '宿舍删除', 3, 'system:dorm:delete', '/admin/dorm/delete', 1, '2019-05-08 11:26:00', 32);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (36, '2017-01-10 13:56:51', '公告管理', null, 0, 3, '公告管理', 1, 'system:notice:index', '/admin/notice/index', 2, '2019-05-08 11:26:00', null);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (37, '2017-01-10 13:56:51', '公告查看', null, 0, 3, '公告查看', 1, 'system:notice:edit', '/admin/notice/edit*', 2, '2019-05-08 11:26:00', 36);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (38, '2017-01-11 16:48:48', '公告添加', null, 0, 3, '公告添加', 2, 'system:notice:add', '/admin/notice/add', 2, '2019-05-08 11:26:00', 36);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (39, '2017-01-11 16:48:48', '公告删除', null, 0, 3, '公告删除', 3, 'system:notice:delete', '/admin/notice/delete*', 2, '2019-05-08 11:26:00', 36);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (40, '2017-01-10 13:56:51', '处分管理', null, 0, 2, '处分管理', 1, 'system:disc:index', '/admin/disc/index', 1, '2019-05-08 11:26:00', null);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (41, '2017-01-10 13:56:51', '处分修改', null, 0, 3, '处分修改', 1, 'system:disc:edit', '/admin/disc/edit*', 2, '2019-05-08 11:26:00', 40);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (42, '2017-01-10 13:56:51', '成绩管理', null, 0, 3, '成绩管理', 1, 'system:score:index', '/admin/score/index', 2, '2019-05-08 11:26:00', null);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (43, '2017-01-10 13:56:51', '成绩查看', null, 0, 3, '成绩查看', 1, 'system:score:edit', '/admin/score/edit*', 2, '2019-05-08 11:26:00', 42);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (44, '2017-01-11 16:48:48', '成绩添加', null, 0, 3, '成绩添加', 2, 'system:score:add', '/admin/score/add', 2, '2019-05-08 11:26:00', 42);
-insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (45, '2017-01-11 16:48:48', '成绩删除', null, 0, 3, '成绩删除', 3, 'system:score:delete', '/admin/score/delete*', 2, '2019-05-08 11:26:00', 42);
 
 
 
@@ -163,14 +153,6 @@ insert into tb_role_resource (role_id, resource_id) values (1, 30);
 insert into tb_role_resource (role_id, resource_id) values (2, 30);
 insert into tb_role_resource (role_id, resource_id) values (1, 31);
 insert into tb_role_resource (role_id, resource_id) values (2, 31);
-insert into tb_role_resource (role_id, resource_id) values (1, 32);
-insert into tb_role_resource (role_id, resource_id) values (2, 32);
-insert into tb_role_resource (role_id, resource_id) values (1, 33);
-insert into tb_role_resource (role_id, resource_id) values (2, 33);
-insert into tb_role_resource (role_id, resource_id) values (1, 34);
-insert into tb_role_resource (role_id, resource_id) values (2, 34);
-insert into tb_role_resource (role_id, resource_id) values (1, 35);
-insert into tb_role_resource (role_id, resource_id) values (2, 35);
 insert into tb_role_resource (role_id, resource_id) values (1, 36);
 insert into tb_role_resource (role_id, resource_id) values (2, 36);
 insert into tb_role_resource (role_id, resource_id) values (1, 37);
@@ -179,18 +161,7 @@ insert into tb_role_resource (role_id, resource_id) values (1, 38);
 insert into tb_role_resource (role_id, resource_id) values (2, 38);
 insert into tb_role_resource (role_id, resource_id) values (1, 39);
 insert into tb_role_resource (role_id, resource_id) values (2, 39);
-insert into tb_role_resource (role_id, resource_id) values (1, 40);
-insert into tb_role_resource (role_id, resource_id) values (2, 40);
-insert into tb_role_resource (role_id, resource_id) values (1, 41);
-insert into tb_role_resource (role_id, resource_id) values (1, 42);
-insert into tb_role_resource (role_id, resource_id) values (1, 43);
-insert into tb_role_resource (role_id, resource_id) values (1, 44);
-insert into tb_role_resource (role_id, resource_id) values (1, 45);
-insert into tb_role_resource (role_id, resource_id) values (2, 42);
-insert into tb_role_resource (role_id, resource_id) values (2, 43);
-insert into tb_role_resource (role_id, resource_id) values (2, 44);
-insert into tb_role_resource (role_id, resource_id) values (2, 45);
-insert into tb_role_resource (role_id, resource_id) values (3, 42);
+
 insert into tb_role_resource (role_id, resource_id) values (1, 100);
 
 
