@@ -100,20 +100,9 @@
                                 </div>
                             </div>
                             
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label">项目历史：</label>
-                                <div class="col-sm-8">
-                                     <a class="btn btn-primary" href="${ctx!}/admin/group/indexhis">项目历史信息管理</a>
-                                </div>
-                            </div>
+
                             
-                                <div class="form-group">
-                                <label class="col-sm-3 control-label">报销申请：</label>
-                                <div class="col-sm-8">
-                                     <a class="btn btn-primary" href="${ctx!}/admin/reim/index">个人报销申请</a>
-                                </div>
-                            </div>
-                            
+      
                             
                         </form>
                 

@@ -119,6 +119,9 @@
 			        title: "项目名称",
 			        field: "name"
 			    },{
+			        title: "项目简介",
+			        field: "detail"
+			    },{
 			        title: "项目状态",
 			        field: "status",
 			        formatter: function(value,row,index){

@@ -49,6 +49,13 @@
                                     <input id="name" name="name" class="form-control" type="text" value="${sche.name}">
                                 </div>
                             </div>
+                            
+                               <div class="form-group">
+                                <label class="col-sm-3 control-label">时间：</label>
+                                <div class="col-sm-8">
+                                    <input id="scheDate" name=scheDate  class="laydate-icon form-control layer-date" value="${user.createTime}">
+                                </div>
+                            </div>
                           
                            
                             <div class="form-group">
@@ -79,42 +86,18 @@
     <script src="${ctx!}/assets/js/plugins/layer/laydate/laydate.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
-	  	
+      	//外部js调用
+	    laydate({
+	        elem: '#scheDate', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+	        event: 'focus' //响应事件。如果没有传入event，则按照默认的click
+	    });
 	    $("#frm").validate({
     	    rules: {
     	    	name: {
     	        required: true,
-    	        minlength: 4,
+    	        minlength: 2,
     	    	maxlength: 20
-    	      },
-    	      	sourceKey: {
-    	        required: true,
-    	        minlength: 4,
-    	    	maxlength: 40
-    	      },
-    	      	type: {
-    	        required: true
-    	      },
-    	      	sourceUrl: {
-    	        required: true
-    	      },
-    	      	level: {
-    	        required: true,
-    	        number:true
-    	      },
-    	      	sort: {
-    	      	number:true,
-    	        required: true
-    	      },
-    	      	icon: {
-    	        maxlength: 40
-    	      },
-    	      	isHide: {
-    	        required: true
-    	      },
-    	      	description: {
-    	        required: true,
-    	        maxlength: 40
+   
     	      }
     	    },
     	    messages: {},

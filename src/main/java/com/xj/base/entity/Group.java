@@ -44,6 +44,9 @@ public class Group extends BaseEntity{
 	 */
 	private String name;
 	
+	/** 项目描述 */
+	private String detail;
+	
 	/** 项目状态 0 未完结 1 完结*/
 	private Integer status;
 	

@@ -26,9 +26,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xj.base.common.JsonResult;
 import com.xj.base.config.WebMvcConfig;
 import com.xj.base.controller.BaseController;
+import com.xj.base.entity.Dept;
 import com.xj.base.entity.Reim;
 import com.xj.base.entity.Role;
 import com.xj.base.entity.User;
+import com.xj.base.service.IDeptService;
 import com.xj.base.service.IRoleService;
 import com.xj.base.service.IUserService;
 import com.xj.base.service.specification.SimpleSpecificationBuilder;
@@ -42,6 +44,8 @@ public class UserController extends BaseController {
 	private IUserService userService;
 	@Autowired
 	private IRoleService roleService;
+	@Autowired
+	private IDeptService deptService;
 
 	@RequestMapping(value = { "/", "/index" })
 	public String index() {
@@ -60,18 +64,23 @@ public class UserController extends BaseController {
 		for (User user : page) {
 			user.setRoleName(userService.findRoleNameById(user.getId()));
 			user.setGroupName(userService.findGroupName(user.getId()));
+			user.setDname(deptService.findNameById(user.getDid()).getName());
 		}
 		return page;
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(ModelMap map) {
+		List<Dept> depts = deptService.findAll();
+		map.put("depts", depts);
 		return "admin/user/form";
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable Integer id,ModelMap map) {
 		User user = userService.find(id);
+		List<Dept> depts = deptService.findAll();
+		map.put("depts", depts);
 		map.put("user", user);
 		return "admin/user/form";
 	}

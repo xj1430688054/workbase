@@ -107,7 +107,11 @@
                      </@shiro.hasPermission>
                      
                   
-                        
+                             <@shiro.hasPermission name="system:dept:index">
+                            <li>
+                                <a class="J_menuItem" href="${ctx!}/admin/dept/index">部门信息管理</a>
+                            </li>
+                         </@shiro.hasPermission>
                     
                         
                         
@@ -118,6 +122,10 @@
                                <a class="J_menuItem" href="${ctx!}/admin/notice/index">公告管理</a>
                             </li>
                          </@shiro.hasPermission>
+                         
+                         <li>
+                               <a class="J_menuItem" href="${ctx!}/admin/group/indexhis">项目历史</a>
+                            </li>
                      
                         </ul>
                     </li>

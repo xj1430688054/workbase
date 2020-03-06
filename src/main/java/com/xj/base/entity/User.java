@@ -102,6 +102,10 @@ public class User extends BaseEntity {
 	 * 用户描述
 	 */
 	private String description;
+	
+	/** 部门id*/
+	private Integer did;
+	
 
 	/**
 	 * 创建时间
@@ -133,6 +137,9 @@ public class User extends BaseEntity {
 	
 	@Transient
 	private String groupName;
+	
+	@Transient
+	private String dname;;
 	
 	/** 身份证号码 */
 	private String credentialNo ;

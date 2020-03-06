@@ -48,6 +48,7 @@ public class GroupServiceImpl extends BaseServiceImpl<Group, Integer> implements
 			dbGroup.setName(group.getName());
 			dbGroup.setStatus(group.getStatus());
 			dbGroup.setUpdateTime(new Date());
+			dbGroup.setDetail(group.getDetail());
 			if (group.getStatus() != dbGroup.getStatus()) {
 				if (null != group.getLeader()) {
 					Set<Role> roless = new HashSet<Role>();

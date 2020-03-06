@@ -5,10 +5,6 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,69 +14,62 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xj.base.common.JsonResult;
 import com.xj.base.controller.BaseController;
-import com.xj.base.entity.Sche;
-import com.xj.base.service.IScheService;
+import com.xj.base.entity.Dept;
+import com.xj.base.service.IDeptService;
 import com.xj.base.service.specification.SimpleSpecificationBuilder;
 import com.xj.base.service.specification.SpecificationOperator.Operator;
 import com.xj.base.vo.ZtreeView;
 
 @Controller
-@RequestMapping("/admin/sche")
-public class ScheController extends BaseController{
-	
+@RequestMapping("/admin/dept")
+public class DeptController extends BaseController {
 	@Autowired
-	private IScheService scheService;
+	private IDeptService deptService;
 	
 
 	
 	@RequestMapping("/index")
 	public String index() {
-		return "admin/sche/index";
+		return "admin/dept/index";
 	}
 
 	@RequestMapping("/list")
 	@ResponseBody
-	public Page<Sche> list() {
-		SimpleSpecificationBuilder<Sche> builder = new SimpleSpecificationBuilder<Sche>();
+	public Page<Dept> list() {
+		SimpleSpecificationBuilder<Dept> builder = new SimpleSpecificationBuilder<Dept>();
 		String searchText = request.getParameter("searchText");
-//		if(StringUtils.isNotBlank(searchText)){
-//			builder.add("name", Operator.likeAll.name(), searchText);
-//			builder.add("sche_date", Operator.likeAll.name(), searchText);
-//			builder.add("uid", Operator.likeAll.name(), searchText);
-//			
-//		}
-//		Page<Sche> page = scheService.findAll(builder.generateSpecification(),getPageRequest());
-		Pageable pageable = getPageRequest();
-		Page<Sche> page = scheService.findByUser(pageable);
-		for (Sche sche : page) {
-			sche.setUname(userService.findNameById(String.valueOf(sche.getUid())));
+		if(StringUtils.isNotBlank(searchText)){
+			builder.add("name", Operator.likeAll.name(), searchText);
+		}
+		Page<Dept> page = deptService.findAll(builder.generateSpecification(),getPageRequest());
+		for (Dept dept : page) {
 		}
 		return page;
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(ModelMap map) {
-		List<Sche> list = scheService.findAll();
+		List<Dept> list = deptService.findAll();
 		map.put("list", list);
-		return "admin/sche/form";
+		return "admin/dept/form";
 	}
 	
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable Integer id,ModelMap map) {
-		Sche sche = scheService.find(id);
-		map.put("sche", sche);
+		Dept dept = deptService.find(id);
+		map.put("dept", dept);
 		
-		List<Sche> list = scheService.findAll();
+		List<Dept> list = deptService.findAll();
 		map.put("list", list);
-		return "admin/sche/form";
+		return "admin/dept/form";
 	}
 	
 	@RequestMapping(value= {"/edit"}, method = RequestMethod.POST)
 	@ResponseBody
-	public JsonResult edit(Sche sche,ModelMap map){
+	public JsonResult edit(Dept dept,ModelMap map){
 		try {
-			scheService.saveOrUpdate(sche, request);
+			deptService.saveOrUpdate(dept);
 		} catch (Exception e) {
 			return JsonResult.failure(e.getMessage());
 		}
@@ -91,12 +80,11 @@ public class ScheController extends BaseController{
 	@ResponseBody
 	public JsonResult delete(@PathVariable Integer id,ModelMap map) {
 		try {
-			scheService.delete(id);
+			deptService.delete(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return JsonResult.failure(e.getMessage());
 		}
 		return JsonResult.success();
 	}
-
 }

@@ -61,11 +61,26 @@
                                 </div>
                             </div>
                             
-                                <div class="form-group">
+                             <div class="form-group">
                                 <label class="col-sm-3 control-label">身份证号：</label>
                                 <div class="col-sm-8">
                                     <input id="credentialNo" name="credentialNo" class="form-control" type="text" value="${user.credentialNo}">
                                 </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">部门：</label>
+                                 <div class="col-sm-8">
+                                <select name="posid" class="form-control" >
+ 				  						<#if depts?exists>
+   											<#list depts as dept>
+  												<option value="${dept.id} " <#if dept.id == "${did}">selected="selected"</#if>>
+                                                    ${dept.name} 
+                                                  </option>
+  											 </#list>
+  										</#if>
+									</select>
+								</div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">性别：</label>
@@ -80,7 +95,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">出生日期：</label>
                                 <div class="col-sm-8">
-                                    <input id="birthday" name="birthday" readonly="readonly" class="laydate-icon form-control layer-date" value="${user.birthday}">
+                                    <input id="birthday" name="birthday"  class="laydate-icon form-control layer-date" value="${user.birthday}">
                                 </div>
                             </div>
                             </#if>

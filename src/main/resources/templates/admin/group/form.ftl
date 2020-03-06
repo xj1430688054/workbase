@@ -48,11 +48,18 @@
                                 <div class="col-sm-8">
                                     <input id="name" name="name" class="form-control" type="text" value="${group.name}">
                                 </div>
-                            </div>                
+                            </div>        
+                            
+                               <div class="form-group">
+                                <label class="col-sm-3 control-label">项目简介：</label>
+                                <div class="col-sm-8">
+                                    <input id="detail" name="detail" class="form-control" type="text" value="${group.detail}">
+                                </div>
+                            </div>          
                            
                               <#if group.id??>
                              <div class="form-group">
-                                <label class="col-sm-3 control-label">审批状态：</label>
+                                <label class="col-sm-3 control-label">项目状态：</label>
                                 <div class="col-sm-8">
                                     <select name="status" class="form-control" >
   												<option value="1" >同意</option>
