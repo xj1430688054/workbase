@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xj.base.common.JsonResult;
 import com.xj.base.controller.BaseController;
 import com.xj.base.entity.Sche;
+import com.xj.base.entity.User;
 import com.xj.base.service.IScheService;
 import com.xj.base.service.specification.SimpleSpecificationBuilder;
 import com.xj.base.service.specification.SpecificationOperator.Operator;
@@ -99,4 +100,30 @@ public class ScheController extends BaseController{
 		return JsonResult.success();
 	}
 
+	
+	
+	@RequestMapping(value = "/summary/{id}", method = RequestMethod.GET)
+	public String summary(@PathVariable Integer id,ModelMap map) {
+		User user = (User)request.getSession().getAttribute("users");
+		map.put("user", user);
+		Sche sche = scheService.find(id);
+		map.put("sche", sche);
+		List<Sche> list = scheService.findAll();
+		map.put("list", list);
+		return "admin/sche/summary";
+	}
+	
+	@RequestMapping(value= {"/summary"}, method = RequestMethod.POST)
+	@ResponseBody
+	public JsonResult summary(Sche sche,ModelMap map){
+		try {
+			Sche dbsche = scheService.find(sche.getId());
+			dbsche.setSummary(sche.getSummary());
+			dbsche.setStatus(1);
+			scheService.update(dbsche);
+		} catch (Exception e) {
+			return JsonResult.failure(e.getMessage());
+		}
+		return JsonResult.success();
+	}
 }

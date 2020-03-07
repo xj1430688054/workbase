@@ -32,9 +32,7 @@
                     </div>
                     <div class="ibox-content">
                         <p>
-                        	<@shiro.hasPermission name="system:group:add">
-                        		<button class="btn btn-success " type="button" onclick="add();"><i class="fa fa-plus"></i>&nbsp;添加</button>
-                        	</@shiro.hasPermission>
+               
                         </p>
                         <hr>
                         <div class="row row-lg">
@@ -146,7 +144,7 @@
 			        title: "操作",
 			        field: "empty",
                     formatter: function (value, row, index) {
-                    	var operateHtml = '<@shiro.hasPermission name="system:group:add"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;查看项目人员</button> &nbsp;</@shiro.hasPermission>';
+                    	var operateHtml = '<button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;查看项目人员</button> &nbsp;';
 
                         return operateHtml;
                     }

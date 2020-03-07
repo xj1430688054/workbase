@@ -125,6 +125,14 @@
 			        title: "日报内容",
 			        field: "name"
 			    },{
+			        title: "状态",
+			        field: "name",
+			        formatter: function(value, row, index) {
+                        if (value == '0') 
+                        	return '<span class="label label-warning">未总结</span>';
+                        return '<span class="label label-primary">以总结</span>';
+                    }
+			    },{
 			        title: "时间",
 			        field: "scheDate",
 			        sortable: true
@@ -137,7 +145,8 @@
 			        field: "empty",
                     formatter: function (value, row, index) {
                     	var operateHtml = '<@shiro.hasPermission name="system:sche:add"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;</@shiro.hasPermission>';
-                    	//operateHtml = operateHtml + '<@shiro.hasPermission name="system:sche:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button></@shiro.hasPermission>';
+                    	operateHtml = operateHtml + '<@shiro.hasPermission name="system:sche:delete"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button></@shiro.hasPermission>';
+                    	operateHtml = operateHtml + '<button class="btn btn-primary btn-xs" type="button" onclick="summary(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;日程总结</button>';
                         return operateHtml;
                     }
 			    }]
@@ -152,6 +161,19 @@
         	      shade: false,
         	      area: ['893px', '600px'],
         	      content: '${ctx!}/admin/sche/edit/' + id,
+        	      end: function(index){
+        	    	  $('#table_list').bootstrapTable("refresh");
+       	    	  }
+        	    });
+        }
+        function summary(id){
+        	layer.open({
+        	      type: 2,
+        	      title: '资源修改',
+        	      shadeClose: true,
+        	      shade: false,
+        	      area: ['893px', '600px'],
+        	      content: '${ctx!}/admin/sche/summary/' + id,
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
        	    	  }

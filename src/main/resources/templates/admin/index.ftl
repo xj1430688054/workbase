@@ -166,30 +166,47 @@
                         </li>
                           <li class="dropdown">
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell"></i> <span class="label label-primary">${count} }</span>
+                                <i class="fa fa-bell"></i> <span class="label label-primary">${count} </span>
                             </a>
                             <ul class="dropdown-menu dropdown-alerts">
-                            <#if status == 1>
+                        
+                        	<#if reimtip != 0>
                                 <li>
-                                    <a href="${ctx!}/admin/tips/">
-                                        <div>
-                                            <i class="fa fa-envelope fa-fw"></i> ${tip} }
-                                            <#-- <span class="pull-right text-muted small">4分钟前</span> -->
-                                        </div>
-                                    </a>
+                                	<div class="text-center link-block">
+                                    	<a class="J_menuItem" href="${ctx!}/admin/reim/index">
+                                        	<div>
+                                            	<i class="J_menuItem"  class="fa fa-envelope fa-fw"></i> ${reimtip} 
+                                            	<#-- <span class="pull-right text-muted small">4分钟前</span> -->
+                                        	</div>
+                                    	</a>
+                                    </div>
                                 </li>
+                        	</#if>
+                                
+                           <#if schetip != 0>
+                                   <li>
+                                      <div class="text-center link-block">
+                                    	<a class="J_menuItem"  href="${ctx!}/admin/sche/index">
+                                        	<div>
+                                            	<i class="fa fa-envelope fa-fw"></i> ${schetip} 
+                                            	<#-- <span class="pull-right text-muted small">4分钟前</span> -->
+                                        	</div>
+                                    	</a>
+                                     </div>
+                                </li>
+                               </#if>
+                               
                                 <li class="divider"></li>
                                 <li class="divider"></li>
-                                <li>
+                                <#-- <li>
                                     <div class="text-center link-block">
                                         <a class="J_menuItem" href="${ctx!}/admin/reim/index">
                                             <strong>查看所有 </strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
                                     </div>
-                                </li>
+                                </li> -->
                                 
-                                </#if>
                             </ul>
                         </li>
                  

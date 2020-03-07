@@ -37,32 +37,29 @@
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>编辑日程</h5>
+                        <h5>日程总结</h5>
                     </div>
                     <div class="ibox-content">
-                        <form class="form-horizontal m-t" id="frm" method="post" action="${ctx!}/admin/sche/edit">
+                        <form class="form-horizontal m-t" id="frm" method="post" action="${ctx!}/admin/sche/summary">
                         	<input type="hidden" id="id" name="id" value="${sche.id}">
-                 			<input type="hidden" id="uid" name="uid" value="${sche.uid}">
+                            
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">日报内容：</label>
+                                <label class="col-sm-3 control-label">日报总结：</label>
                                 <div class="col-sm-8">
-                                    <input id="name" name="name" class="form-control" type="text" value="${sche.name}">
+                                    <textarea name="summary" id="summary" class="form-control"  style="width:525px;height:200px;"  >
+                                    ${sche.summary} 
+ 									</textarea>
                                 </div>
                             </div>
                             
-                               <div class="form-group">
-                                <label class="col-sm-3 control-label">时间：</label>
-                                <div class="col-sm-8">
-                                    <input id="scheDate" name=scheDate  class="laydate-icon form-control layer-date" value="${user.createTime}">
-                                </div>
-                            </div>
-                          
-                           
+                           <#if user.id == sche.uid>
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <button class="btn btn-primary" type="submit">提交</button>
                                 </div>
                             </div>
+                            </#if>
+                            
                         </form>
                     </div>
                 </div>
@@ -86,11 +83,6 @@
     <script src="${ctx!}/assets/js/plugins/layer/laydate/laydate.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
-      	//外部js调用
-	    laydate({
-	        elem: '#scheDate', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
-	        event: 'focus' //响应事件。如果没有传入event，则按照默认的click
-	    });
 	    $("#frm").validate({
     	    rules: {
     	    	name: {
@@ -105,7 +97,7 @@
     	    	$.ajax({
    	    		   type: "POST",
    	    		   dataType: "json",
-   	    		   url: "${ctx!}/admin/sche/edit",
+   	    		   url: "${ctx!}/admin/sche/summary",
    	    		   data: $(form).serialize(),
    	    		   success: function(msg){
 	   	    			layer.msg(msg.message, {time: 2000},function(){

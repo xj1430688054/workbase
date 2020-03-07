@@ -16,10 +16,12 @@ import com.xj.base.entity.Group;
 import com.xj.base.entity.Reim;
 import com.xj.base.entity.Resource;
 import com.xj.base.entity.Role;
+import com.xj.base.entity.Sche;
 import com.xj.base.entity.User;
 import com.xj.base.service.IReimService;
 import com.xj.base.service.IResourceService;
 import com.xj.base.service.IRoleService;
+import com.xj.base.service.IScheService;
 import com.xj.base.service.specification.SimpleSpecificationBuilder;
 import com.xj.base.service.specification.SpecificationOperator.Operator;
 
@@ -32,6 +34,9 @@ public class AdminIndexController extends BaseController{
 	@Autowired
 	private IResourceService resourceService;
 	
+	@Autowired
+	private IScheService scheService;
+	
 	
 	@Autowired
 	private IRoleService roleService;
@@ -39,35 +44,53 @@ public class AdminIndexController extends BaseController{
 	
 	@RequestMapping(value ={"/admin/","/admin/index"})
 	public String index(Model model){
+		String status = "0";
+		StringBuffer strBuff = new StringBuffer();
+		String schetip = "";
+		String reimtip = "";
+		int count = 0;
+		int reimcount = 0;
 		User user = (User)request.getSession().getAttribute("users");
-		SimpleSpecificationBuilder<Reim> builder = new SimpleSpecificationBuilder<Reim>();
-			builder.add("status", Operator.likeAll.name(), "0");
-		int count = (int)reimService.count(builder.generateSpecification());
 		
-		model.addAttribute("count", count);
-		String tip = "尊敬的 " + user.getNickName() + "先生， 您有" + count + "条信息需要审批";
+		strBuff.append( "尊敬的 " + user.getNickName() + "先生， 您有");
 		user = userService.find(user.getId());
 		
-		model.addAttribute("tip", tip);
 		Set<Role> roles = user.getRoles();
 		Role role = roles.iterator().next();
 		
+		//查找当前还没做总结的日报
+		SimpleSpecificationBuilder<Sche> scheBulider = new SimpleSpecificationBuilder<Sche>();
+		scheBulider.add("uid", Operator.eq.name(), user.getId());
+		scheBulider.add("status", Operator.eq.name(), 0);
+		 int schecount = (int) scheService.count(scheBulider.generateSpecification());
+		 if (0 != schecount) {
+			 count += schecount;
+			  schetip = "尊敬的 " + user.getNickName() + "您有" + schecount + "条日报未作总结";
+		}
 		
 		role = roleService.find(role.getId());
 		Set<Resource> roleResources = role.getResources();
-//		SimpleSpecificationBuilder<Resource> builderresec = new SimpleSpecificationBuilder<Resource>();
-//		builderresec.add("namn", Operator.eq.name(), "报销编辑");
-//		List<Resource> resources = resourceService.findAll(builderresec.generateSpecification());
-//		Resource resource = resources.get(0);
-		String status = "0";
 		for (Resource resource : roleResources) {
 			
 			if ("报销编辑".equals(resource.getName())) {
+				SimpleSpecificationBuilder<Reim> builder = new SimpleSpecificationBuilder<Reim>();
+				builder.add("status", Operator.eq.name(), "0");
+				 reimcount = (int)reimService.count(builder.generateSpecification());
+				count += reimcount;
+				if ( 0!= reimcount) {
+					reimtip = "尊敬的 " + user.getNickName() + "您有" + reimcount + "条报销需要审核";
+				}
 				status = "1";
 				break;
 			}
 		}
+		
+		model.addAttribute("schecount", String.valueOf(schecount));
+		model.addAttribute("reimcount", String.valueOf(reimcount));
+		model.addAttribute("count", count);
 		model.addAttribute("status", status);
+		model.addAttribute("schetip", schetip);
+		model.addAttribute("reimtip", reimtip);
 		
 		return "admin/index";
 	}

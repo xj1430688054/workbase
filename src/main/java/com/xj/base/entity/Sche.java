@@ -29,6 +29,12 @@ public class Sche extends BaseEntity{
 	
 	private String Name;
 	
+	/** 日程总结 */
+	private String summary;
+	
+	/** 日程总结状态*/
+	private Integer status;
+	
 	@JSONField(format = "yyyy-MM-dd")
 	private Date scheDate;
 	
