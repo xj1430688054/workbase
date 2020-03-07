@@ -148,12 +148,12 @@
     	    rules: {
     	    	name: {
     	        required: true,
-    	        minlength: 4,
+    	        minlength: 2,
     	    	maxlength: 20
     	      },
     	      	sourceKey: {
     	        required: true,
-    	        minlength: 4,
+    	        minlength: 2,
     	    	maxlength: 40
     	      },
     	      	type: {

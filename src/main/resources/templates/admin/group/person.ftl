@@ -140,6 +140,9 @@
 			        title: "项目组",
 			        field: "groupName"
 			    },{
+			        title: "部门",
+			        field: "dname",
+			    },{
 			        title: "创建时间",
 			        field: "createTime",
 			        sortable: true

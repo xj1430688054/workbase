@@ -41,7 +41,7 @@
                     </div>
                     <div class="ibox-content">
                         <form class="form-horizontal" id="frm" method="post" action="${ctx!}/admin/user/save">
-                        	<input type="hidden" id="id" name="id" value="${user.id}">
+                        	<input type="hidden" id="id" name="id" value="${(user.id)?c}">
                         	<div class="form-group">
                         		<#list roles as role>
                                 <div class="col-sm-12">
@@ -92,7 +92,7 @@
     	    	$.ajax({
    	    		   type: "POST",
    	    		   dataType: "json",
-   	    		   url: "${ctx!}/admin/user/grant/" + ${user.id},
+   	    		   url: "${ctx!}/admin/user/grant/" + ${(user.id)?c},
    	    		   data: $(form).serialize(),
    	    		   success: function(msg){
 	   	    			layer.msg(msg.message, {time: 2000},function(){

@@ -48,9 +48,9 @@
                                     <div class="checkbox i-checks">
                                         <label>
                                         	<#if uid?seq_contains(user.id)>
-                                            	<input type="checkbox" value="${user.id}" name="uid" checked="checked"> <i></i> ${user.nickName}
+                                            	<input type="checkbox" value="${(user.id)?c}" name="uid" checked="checked"> <i></i> ${user.nickName}
                                             <#else>
-                                            	<input type="checkbox" value="${user.id}" name="uid"> <i></i> ${user.nickName}
+                                            	<input type="checkbox" value="${(user.id)?c}" name="uid"> <i></i> ${user.nickName}
                                             </#if>
                                         </label>
                                     </div>

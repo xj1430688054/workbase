@@ -20,6 +20,7 @@ import com.xj.base.controller.BaseController;
 import com.xj.base.entity.Role;
 import com.xj.base.entity.User;
 import com.xj.base.entity.Group;
+import com.xj.base.service.IDeptService;
 import com.xj.base.service.IGroupService;
 import com.xj.base.service.specification.SimpleSpecificationBuilder;
 import com.xj.base.service.specification.SpecificationOperator.Operator;
@@ -30,6 +31,9 @@ public class GroupController extends BaseController{
 	
 	@Autowired
 	private IGroupService groupService;
+	
+	@Autowired
+	private IDeptService deptService;
 	
 	
 	@RequestMapping("/index")
@@ -146,6 +150,11 @@ public class GroupController extends BaseController{
 	@RequestMapping(value = "/person/{id}", method = RequestMethod.GET)
 	public String person(@PathVariable Integer id,ModelMap map) {
 		Group group = groupService.find(id);
+		for (User user : group.getUsers()) {
+			user.setRoleName(userService.findRoleNameById(user.getId()));
+			user.setGroupName(userService.findGroupName(user.getId()));
+			user.setDname(deptService.findNameById(user.getDid()).getName());
+		}
 		map.put("group", group);
 		return "admin/group/person";
 	}
@@ -157,6 +166,12 @@ public class GroupController extends BaseController{
 			group = groupService.find(group.getId());
 			map.put("group", group);
 			Set<User> users = group.getUsers();
+			for (User user : group.getUsers()) {
+				user.setRoleName(userService.findRoleNameById(user.getId()));
+				user.setGroupName(userService.findGroupName(user.getId()));
+				user.setDname(deptService.findNameById(user.getDid()).getName());
+			}
+			
 			return JsonResult.success(users);
 		} catch (Exception e) {
 			e.printStackTrace();

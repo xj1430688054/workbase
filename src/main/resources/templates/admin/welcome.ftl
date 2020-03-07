@@ -16,7 +16,7 @@
 <body>
  <div class="ibox-content">
 	<form class="form-horizontal m-t" id="frm" method="post" action="${ctx!}/admin/user/edit">
-                        	<input type="hidden" id="id" name="id" value="${user.id}">
+                        	<input type="hidden" id="id" name="id" value="${(user.id)?c}">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">账户名：</label>
                                 <div class="col-sm-8">
@@ -98,8 +98,16 @@
                                     <button class="btn btn-primary" type="submit">提交</button>
                                     </#if>
                                 </div>
+                                
                             </div>
-                            
+                            <#if isown == "false">
+                              <div class="form-group">
+                                <label class="col-sm-3 control-label">项目历史：</label>
+                                <div class="col-sm-8">
+                                     <a class="btn btn-primary" href="${ctx!}/admin/group/indexhis">项目历史信息管理</a>
+                                </div>
+                            </div>
+                             </#if>
 
                             
       
@@ -140,7 +148,7 @@
 						                <form enctype="multipart/form-data" method="post" action="${ctx!}/admin/user/upload">
 						                    <div class="form-group center-block" style="width: 600px;" >
 						                        <input id="modelInput" name="file" type="file" class="file" data-browse-on-zone-click="true">
-						                        <input type="hidden" id="id" name="id" value="${user.id}">
+						                        <input type="hidden" id="id" name="id" value="${(user.id)?c}">
 						                    </div>
 						                </form>
 						                <div id="kartik-file-errors"></div>

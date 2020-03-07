@@ -41,7 +41,7 @@
                     </div>
                     <div class="ibox-content">
                         <form class="form-horizontal m-t" id="frm" method="post" action="${ctx!}/admin/user/edit">
-                        	<input type="hidden" id="id" name="id" value="${user.id}">
+                        	<input type="hidden" id="id" name="id" value="${(user.id)?c}">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">账户名：</label>
                                 <div class="col-sm-8">

@@ -235,7 +235,7 @@
 
     $(document).ready(function(){
     	
-    		var id="${users.getId() }";
+    		var id="${(users.getId())?c }";
     	  $("#toUserIndex").click(function(){
     	    $("#toUserIndex").attr("href","/admin/welcome/"+id);
     	  });
