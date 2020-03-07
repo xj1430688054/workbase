@@ -84,9 +84,7 @@ public class GroupServiceImpl extends BaseServiceImpl<Group, Integer> implements
 				}
 				Integer uid = Integer.parseInt(uids[i]);
 				user = userService.find(uid);
-				user.setRoles(roless);
-				userService.update(user);
-				
+				users.add(user);
 			}
 		}
 		group.setUsers(users);
