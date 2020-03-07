@@ -49,7 +49,7 @@
                                         <label>
                                         
                                         	<#if user.id==group.leader >
-                                            	<input type="radio" value="${(user.id)?c}" name="uid" checked="checked"> <i></i> ${user.nickName}   ${uid} ${group.leader }
+                                            	<input type="radio" value="${(user.id)?c}" name="uid" checked="checked"> <i></i> ${user.nickName}  
                                             <#else>
                                             	<input type="radio" value="${(user.id)?c}" name="uid"> <i></i> ${user.nickName}
                                             </#if>
